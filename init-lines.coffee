@@ -8,6 +8,6 @@ say 'Forming Lines'
 
 lines = []
 _.times 6, ->
-  lines.push gen.silence sustain: (44100 * 180)
+  lines.push gen.silence sustain: 550000
 
 module.exports = lines

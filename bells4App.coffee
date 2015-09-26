@@ -11,10 +11,21 @@ say     = require './say.coffee'
 
 lines   = require './init-lines.coffee'
 timings = require './init-timings.coffee'
+times   = (require './init-times.coffee') timings
 voices  = require './init-voices.coffee'
 
+console.log times[0]
+console.log timings[0]
+
+voiceCount = 6
+
+startingPoints =
+  part0: 4
+  part1: (16 * 4) + 4
+
 fs.readdir __dirname, (err, files) ->
-  console.log files
+
+  say 'Ready'
 
   _.forEach files, (f) ->
     if (getFileExtension f) is '.csv'
@@ -23,6 +34,8 @@ fs.readdir __dirname, (err, files) ->
         fileName = removeFileExtension f
         say fileName + ' CHANGED!'
 
-
-
-
+        # (require './' + fileName + '.coffee') fileName,
+        #   voices
+        #   lines
+        #   timings
+        #   startingPoints

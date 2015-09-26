@@ -6,20 +6,21 @@ say = require './say.coffee'
 
 say 'Making timings'
 
-beatDuration  = 7600
-timings       = [ 0 ]
-_.times (64 * 8), (time) =>
-  nextTime      =  Math.random() / 40
-  nextTime      += 0.9845
-  nextTime      *= beatDuration
-  beatDuration  =  nextTime // 1
+beatDuration    = 7600
+timings           = [ 0 ]
+_.timings (64 * 8),  =>
+  randomness = Math.random() / 40
+  time          =  randomness
+  time         +=  1 - (1 / 80)
+  time         *= beatDuration
+  beatDuration  =  time // 1
+  timings.push time 
 
-  timings.push (timings[ time ] + beatDuration )
-allTimings = []
+alltimings = []
+
 _.times 6, ->
-  anotherTiming = _.map timings, (timing) ->
-    (timing + (Math.random() * 3000) - 1500) // 1
-  allTimings.push anotherTiming
+  anotherTime = _.map timings, (time) ->
+    (time + (Math.random() * 200) - 100) // 1
+  alltimings.push anotherTime
 
-
-module.exports = allTimings
+module.exports = alltimings
