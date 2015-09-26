@@ -10,19 +10,14 @@ say     = require './say.coffee'
   require './file-name-utilities.coffee'
 
 lines   = require './init-lines.coffee'
-voices  = require './init-voices.coffee'
 timings = require './init-timings.coffee'
-
-filesToWatch = []
+voices  = require './init-voices.coffee'
 
 fs.readdir __dirname, (err, files) ->
   console.log files
 
   _.forEach files, (f) ->
     if (getFileExtension f) is '.csv'
-
-      thisFile = {name: f}
-      hash = fs.readFileSync __dirname + '/' + f
 
       fs.watch f, ->
         fileName = removeFileExtension f
