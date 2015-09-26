@@ -14,9 +14,6 @@ timings = require './init-timings.coffee'
 times   = (require './init-times.coffee') timings
 voices  = require './init-voices.coffee'
 
-console.log times[0]
-console.log timings[0]
-
 voiceCount = 6
 
 startingPoints =

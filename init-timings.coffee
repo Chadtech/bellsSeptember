@@ -8,7 +8,7 @@ say 'Making timings'
 
 beatDuration    = 7600
 timings           = [ 0 ]
-_.timings (64 * 8),  =>
+_.times (64 * 8),  =>
   randomness = Math.random() / 40
   time          =  randomness
   time         +=  1 - (1 / 80)
