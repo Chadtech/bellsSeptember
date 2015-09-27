@@ -73,12 +73,13 @@ voice5 =
   '44': octavesOfBellB[5][4]
   '50': octavesOfBellB[6][0]
 
-voices =
-  0: voice0
-  1: voice1
-  2: voice2
-  3: voice3
-  4: voice4
-  5: voice5
+voices =  [
+  voice0
+  voice1
+  voice2
+  voice3
+  voice4
+  voice5
+]
 
 module.exports = voices

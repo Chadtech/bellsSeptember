@@ -9,10 +9,10 @@ say     = require './say.coffee'
 {getFileName, removeFileExtension, getFileExtension} = 
   require './file-name-utilities.coffee'
 
-lines   = require './init-lines.coffee'
-timings = require './init-timings.coffee'
+lines   =  (require './init-lines.coffee')()
+timings =  require './init-timings.coffee'
 times   = (require './init-times.coffee') timings
-voices  = require './init-voices.coffee'
+voices  =  require './init-voices.coffee'
 
 voiceCount = 6
 
@@ -31,8 +31,19 @@ fs.readdir __dirname, (err, files) ->
         fileName = removeFileExtension f
         say fileName + ' CHANGED!'
 
-        # (require './' + fileName + '.coffee') fileName,
-        #   voices
-        #   lines
-        #   timings
-        #   startingPoints
+        lines = (require './' + fileName + '.coffee') fileName,
+          voices
+          lines
+          times
+          timings
+          startingPoints
+          voiceCount
+
+        Nt.buildFile 'test.wav', 
+          [ 
+            Nt.convertTo64Bit lines[3]
+            Nt.convertTo64Bit lines[2]
+           ]
+        cp.exec 'play test.wav'
+        lines = (require './init-lines.coffee')()
+        say 'Lines Reset'

@@ -6,8 +6,12 @@ say = require './say.coffee'
 
 say 'Forming Lines'
 
-lines = []
-_.times 6, ->
-  lines.push gen.silence sustain: 550000
+returnLines = ->
 
-module.exports = lines
+  lines = []
+  _.times 6, ->
+    lines.push gen.silence sustain: 550000
+
+  lines
+
+module.exports = returnLines
