@@ -38,7 +38,6 @@ module.exports = (f, voices, lines, times, timings, startingPoints, voiceCount) 
           blockOfSilence = eff.fadeOut blockOfSilence, 
             (beginAt: 0, endAt: rampRate)
 
-          # console.log 'A', voice[ note ].length, time[ ni ]
           line = Nt.displace blockOfSilence, line, thisTime - rampRate
           line = Nt.mix voice[ note ], line, thisTime
 

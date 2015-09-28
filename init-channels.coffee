@@ -4,14 +4,14 @@ gen = Nt.generate
 eff = Nt.effect
 say = require './say.coffee'
 
-say 'Forming Lines'
+say 'Forming Channels'
 
-returnLines = ->
+returnLines = (duration) ->
 
-  lines = []
-  _.times 6, ->
-    lines.push gen.silence sustain: 1200000
+  channels = []
+  _.times 2, ->
+    channels.push gen.silence sustain: duration
 
-  lines
+  channels
 
 module.exports = returnLines
