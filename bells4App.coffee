@@ -8,22 +8,29 @@ say      = require './say.coffee'
 play     = require './play.coffee'
 Mixer    = require './channel-mixer.coffee'
 Convolve = require './convolve.coffee'
-
+sys      = require 'util'
+stdin    = process.openStdin()
 
 
 {getFileName, removeFileExtension, getFileExtension} = 
   require './file-name-utilities.coffee'
 
-lines   =  (require './init-lines.coffee')()
+
+lines   = (require './init-lines.coffee')()
 timings =  require './init-timings.coffee'
 times   = (require './init-times.coffee') timings
 voices  =  require './init-voices.coffee'
+
+seed       = 'affordableD.wav'
+justPlayed = ''
 
 voiceCount = 6
 
 startingPoints =
   part0: 4
-  part1: (16 * 4) + 4
+  part1: 4
+  part2: 4
+
 
 fs.readdir __dirname, (err, files) ->
 
@@ -60,13 +67,38 @@ fs.readdir __dirname, (err, files) ->
         Nt.buildFile fileName + '.wav', Channels
         
         say 'Convolving ' + fileName
-        Convolve fileName + '.wav', 'cheapoC.wav'
+        Convolve fileName + '.wav', seed
 
         say 'Playing ' + fileName
-        play fileName + '_CONVOLVEDwcheapoC.wav'
+        play fileName + '_CONVOLVEDw' + seed
+        justPlayed = fileName + '_CONVOLVEDw' + seed
 
         lines = (require './init-lines.coffee')()
         say 'Lines Reset'
+
+
+
+console.log 'Bells 4 App Terminal :'
+stdin.addListener 'data', (d) ->
+  d = d.toString().trim()
+  d = d.split ' '
+
+  switch d[0]
+
+    when 'play'
+      say 'Playing ' + d[1]
+      if d[1] is 'prior'
+        play justPlayed
+      else
+        play './' + d[1] + '.wav'
+
+    else
+      say 'Does not compute'
+
+
+
+
+
 
 
 

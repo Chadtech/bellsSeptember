@@ -20,7 +20,7 @@ for bellIndex in [0 .. 44 ]
 
   thisBellSound = Nt.open filePath
   thisBellSound = Nt.convertToFloat thisBellSound[0]
-  thisBellSound = eff.vol thisBellSound, factor: 0.3
+  thisBellSound = eff.vol thisBellSound, factor: 0.25
   
   thisOctave.push thisBellSound
 
@@ -28,8 +28,6 @@ for bellIndex in [0 .. 44 ]
     octavesOfBellB.push thisOctave
 
     thisOctave = []
-
-say 'Assigning Voices'
 
 voice0 =
   '14': octavesOfBellB[2][4]
