@@ -10,7 +10,7 @@ returnLines = ->
 
   lines = []
   _.times 6, ->
-    lines.push gen.silence sustain: 1200000
+    lines.push gen.silence sustain: 1400000
 
   lines
 

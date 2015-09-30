@@ -9,9 +9,7 @@ module.exports =
 
 
   convertTo64Bit: (input) ->
-
     sampleIndex = 0
-
     while sampleIndex < input.length
       input[sampleIndex] = (input[sampleIndex] * 32767) // 1
       sampleIndex++
@@ -290,6 +288,19 @@ module.exports =
 
     sampleIndex = 0
     while sampleIndex < input0.length
+      input1[whereAt + sampleIndex] += input0[sampleIndex]
+      sampleIndex++
+
+    input1
+
+
+  mixSafe: (input0, input1, place) ->
+    whereAt = place or 0
+
+    sampleIndex = 0
+    while sampleIndex < input0.length
+      if (input1.length - 1) < (whereAt + sampleIndex)
+        input1.push 0
       input1[whereAt + sampleIndex] += input0[sampleIndex]
       sampleIndex++
 
